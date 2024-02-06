@@ -1,0 +1,24 @@
+<div class="flex items-center justify-center h-screen" style="font-family: 'Poppins', sans-serif;">
+  <div class="bg-gray-600 p-10 rounded-md shadow-md text-center" style="width: 50%;">
+    <div class="text-2xl text-white pb-2">Texas Triangle Region</div>
+
+    <div class="flex flex-col mb-4">
+      <label for="city1" class="block mb-2 text-white">Dallas:</label>
+      <textarea id="city1" [(ngModel)]="city1" class="border rounded-md p-2 mb-2 flex-grow" style="width: 100%;"></textarea>
+    </div>
+
+    <div class="flex flex-col mb-4">
+      <label for="city2" class="block mb-2 text-white">Houston:</label>
+      <textarea id="city2" [(ngModel)]="city2" class="border rounded-md p-2 mb-2 flex-grow" style="width: 100%;"></textarea>
+    </div>
+
+
+    <div class="flex flex-col mb-4">
+      <label for="city3" class="block mb-2 text-white">San Antonio:</label>
+      <textarea id="city3" [(ngModel)]="city3" class="border rounded-md p-2 mb-2 flex-grow" style="width: 100%;"></textarea>
+    </div>
+
+    <button class="bg-green-700 text-white px-2 py-1 mr-2 shadow-md rounded-md">Submit</button>
+    <button (click)="clearFields()" class="bg-blue-500 text-white px-2 py-1 shadow-md rounded-md">Clear Fields</button>
+  </div>
+</div>
