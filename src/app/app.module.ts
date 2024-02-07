@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { MarketSectionComponent } from './market-section/market-section.component';
 import {FormsModule} from "@angular/forms";
 import { PastHandoffsComponent } from './past-handoffs/past-handoffs.component';
+import {HttpClientModule} from "@angular/common/http";
+import {DataService} from "./data.service";
 
 @NgModule({
   declarations: [
@@ -15,9 +17,10 @@ import { PastHandoffsComponent } from './past-handoffs/past-handoffs.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

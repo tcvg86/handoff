@@ -1,14 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&family=Poppins&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.body {
+  background-color: #333;
+}
 
 .app-container {
   background-color: #333;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -51,4 +54,12 @@
 
 .content {
   margin-top: 60px;
+}
+
+.handoff {
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 600px;
 }

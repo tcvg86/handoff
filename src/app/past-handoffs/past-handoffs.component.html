@@ -1,3 +1,16 @@
-<div class="flex items-center justify-center h-screen">
-  <p class="text-white" style="font-family: 'Poppins', sans-serif;">Past Handoffs go here</p>
+<div class="flex items-center justify-center h-screen" style="font-family: 'Mulish', sans-serif;">
+  <div *ngIf="pastHandoffs && pastHandoffs.length > 0; else noDataTemplate" class="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+    <div *ngFor="let handoff of pastHandoffs" class="handoff p-4 border border-gray-300 rounded-md" style="background-color: #bbb;">
+      <p class="mb-2">Dallas: {{ handoff.dallas }}</p>
+      <p class="mb-2">Houston: {{ handoff.houston }}</p>
+      <p class="mb-2">San Antonio: {{ handoff.san_antonio }}</p>
+      <p class="mb-2">Entry: {{ handoff.entry_datetime | date: "h:mm a MMM dd, yyyy" }}</p>
+    </div>
+  </div>
+
+  <ng-template #noDataTemplate>
+    <div class="flex items-center justify-center h-screen text-white">
+      No Data Found
+    </div>
+  </ng-template>
 </div>

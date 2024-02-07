@@ -25,3 +25,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Flask
+In case you lose your mind... you need to clear you cookies and refresh so that this works... otherwise, you're going to have a bunch of CORS issues you don't want to deal with.
