@@ -1,12 +1,51 @@
-<div class="flex items-center justify-center h-screen" style="font-family: 'Mulish', sans-serif;">
-  <div *ngIf="pastHandoffs && pastHandoffs.length > 0; else noDataTemplate" class="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-    <div *ngFor="let handoff of pastHandoffs" class="handoff p-4 border border-gray-300 rounded-md" style="background-color: #bbb;">
-      <p class="mb-2">Dallas: {{ handoff.dallas }}</p>
-      <p class="mb-2">Houston: {{ handoff.houston }}</p>
-      <p class="mb-2">San Antonio: {{ handoff.san_antonio }}</p>
-      <p class="mb-2">Entry: {{ handoff.entry_datetime | date: "h:mm a MMM dd, yyyy" }}</p>
-    </div>
-  </div>
+<div class="flex items-center justify-center h-screen">
+  <table class="m-10 table-fixed">
+    <thead>
+      <tr class="border-b border-t border-l border-r border-blue-gray-100 bg-blue-gray-50">
+        <th class="m-2">Entry #</th>
+        <th class="m-2">Dallas</th>
+        <th class="m-2">Houston</th>
+        <th class="m-2">San Antonio</th>
+        <th class="m-2">Entry Date & Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let handoff of pastHandoffs" class="p-4 border-b border-r border-blue-gray-50">
+        <td class="border-r border-l border-blue-gray-50"><p class="text-center">{{ handoff.id }}</p></td>
+        <td class="border-r border-blue-gray-50"><p class="m-2">{{ handoff.dallas }}</p></td>
+        <td class="border-r border-blue-gray-50"><p class="m-2">{{ handoff.houston }}</p></td>
+        <td class="border-r border-blue-gray-50"><p class="m-2">{{ handoff.san_antonio }}</p></td>
+        <td class="border-r border-blue-gray-50">
+          <p class="m-2">
+            {{ handoff.entry_datetime | date: "h:mm a" }}<br/>
+            {{ handoff.entry_datetime | date: "M/d/y" }}
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<!--  <figure *ngFor="let handoff of pastHandoffs" class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 m-2 dark:bg-slate-800">-->
+<!--    <div class="pt-6 md:p-8 text-center md:text-left space-y-4">-->
+<!--      <blockquote>-->
+<!--        <figcaption class="font-medium">Dallas:</figcaption>-->
+<!--        <p class="font-medium">{{ handoff.dallas }}</p>-->
+<!--      </blockquote>-->
+<!--      <blockquote>-->
+<!--        <figcaption class="font-medium">Houston:</figcaption>-->
+<!--        <p class="font-medium">{{ handoff.houston }}</p>-->
+<!--      </blockquote>-->
+<!--      <blockquote>-->
+<!--        <figcaption class="font-medium">San Antonio:</figcaption>-->
+<!--        <p class="font-medium">{{ handoff.san_antonio }}</p>-->
+<!--      </blockquote>-->
+<!--      <figcaption class="text-xs font-medium">-->
+<!--        <div>-->
+<!--          Entry Date: {{ handoff.entry_datetime | date: "h:mm a MMM dd, yyyy" }}-->
+<!--        </div>-->
+<!--      </figcaption>-->
+<!--    </div>-->
+<!--  </figure>-->
 
   <ng-template #noDataTemplate>
     <div class="flex items-center justify-center h-screen text-white">

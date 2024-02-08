@@ -5,10 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.body {
-  background-color: #333;
-}
-
 .app-container {
   background-color: #333;
   flex-direction: row;
