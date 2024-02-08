@@ -12,18 +12,12 @@
 }
 
 .app-banner {
-  background-color: #777;
-  color: #fff;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'Poppins', sans-serif;
+  /*font-family: 'Poppins', sans-serif;*/
 }
 
 .button-container {
@@ -49,7 +43,7 @@
 }
 
 .content {
-  margin-top: 60px;
+  margin: 150px 75px 150px 75px;
 }
 
 .handoff {

@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center h-screen">
-  <table class="m-10 table-fixed">
+  <table *ngIf="pastHandoffs && pastHandoffs.length > 0; else noDataTemplate" class="m-10 table-fixed">
     <thead>
       <tr class="border-b border-t border-l border-r border-blue-gray-100 bg-blue-gray-50">
         <th class="m-2">Entry #</th>
@@ -48,7 +48,7 @@
 <!--  </figure>-->
 
   <ng-template #noDataTemplate>
-    <div class="flex items-center justify-center h-screen text-white">
+    <div class="flex items-center justify-center h-screen text-2xl">
       No Data Found
     </div>
   </ng-template>
