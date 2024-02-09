@@ -1,17 +1,51 @@
 -- create la table
-CREATE TABLE entries (
+CREATE TABLE markets (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    dallas TEXT,
-    houston TEXT,
-    san_antonio TEXT,
-    entry_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    city VARCHAR(40)
 );
 
--- some random entries
--- INSERT 1
-INSERT INTO entries (dallas, houston, san_antonio, entry_datetime)
-VALUES ('Lorem ipsum dolor sit amet.', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Ut enim ad minim veniam.', '2023-03-01 08:15:00'),
-('Consectetur adipiscing elit.', 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', '2023-03-02 10:30:00'),
-('Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2023-03-03 12:45:00'),
-('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2023-03-04 15:00:00'),
-('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2023-03-05 17:15:00');
+-- market inserts
+INSERT INTO markets (city)
+VALUES ('Houston'),
+('San Antonio'),
+('Dallas'),
+('Austin'),
+('Fort Worth'),
+('El Paso'),
+('Arlington'),
+('Corpus Christi'),
+('Plano'),
+('Laredo'),
+('Lubbock'),
+('Garland'),
+('Irving'),
+('Amarillo'),
+('Grand Prairie'),
+('McKinney'),
+('Frisco'),
+('Brownsville'),
+('Pasadena'),
+('Mesquite');
+
+-- create table for entries
+CREATE TABLE entries (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  market_id INT,
+  entry TEXT,
+  name VARCHAR(75),
+  date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- create random entries
+INSERT INTO entries (market_id, entry, name, date)
+VALUES
+  (3, 'Latest sales trends in Dallas.', 'Bob Johnson', '2024-02-09 14:56:12'),
+  (7, 'Arlington sales news roundup.', 'David Taylor', '2024-02-09 18:40:17'),
+  (1, 'Market update for sales in Houston.', 'John Doe', '2024-02-09 12:34:56'),
+  (6, 'El Paso market insights.', 'Sarah Wilson', '2024-02-09 17:29:03'),
+  (4, 'Austin market sales report.', 'Emily Davis', '2024-02-09 15:07:45'),
+  (9, 'Sales updates for Plano.', 'Chris Anderson', '2024-02-09 20:02:15'),
+  (5, 'Fort Worth sales update.', 'Michael Miller', '2024-02-09 16:18:29'),
+  (2, 'Sales news update for San Antonio.', 'Jane Smith', '2024-02-09 13:45:30'),
+  (10, 'Laredo market report.', 'Jessica Brown', '2024-02-09 21:13:59'),
+  (8, 'Corpus Christi market sales overview.', 'Laura Martinez', '2024-02-09 19:51:42');

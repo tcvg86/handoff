@@ -1,51 +1,28 @@
-<div class="flex items-center justify-center h-screen">
-  <table *ngIf="pastHandoffs && pastHandoffs.length > 0; else noDataTemplate" class="m-10 table-fixed">
+<div class="items-center justify-center" style="margin: 10%;">
+  <table *ngIf="pastHandoffs && pastHandoffs.length > 0; else noDataTemplate" class="table-fixed mx-auto">
     <thead>
-      <tr class="border-b border-t border-l border-r border-blue-gray-100 bg-blue-gray-50">
-        <th class="m-2">Entry #</th>
-        <th class="m-2">Dallas</th>
-        <th class="m-2">Houston</th>
-        <th class="m-2">San Antonio</th>
-        <th class="m-2">Entry Date & Time</th>
+      <tr class="border-b border-t border-l border-r border-black bg-blue-gray-50">
+        <th class="m-2" style="width: 10%;">Entry #</th>
+        <th class="m-2" style="width: 20%;">Market</th>
+        <th class="m-2" style="width: 50%;">Updates</th>
+        <th class="m-2" style="width: 20%;">Entry Date & Time</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let handoff of pastHandoffs" class="p-4 border-b border-r border-blue-gray-50">
-        <td class="border-r border-l border-blue-gray-50"><p class="text-center">{{ handoff.id }}</p></td>
-        <td class="border-r border-blue-gray-50"><p class="m-2">{{ handoff.dallas }}</p></td>
-        <td class="border-r border-blue-gray-50"><p class="m-2">{{ handoff.houston }}</p></td>
-        <td class="border-r border-blue-gray-50"><p class="m-2">{{ handoff.san_antonio }}</p></td>
-        <td class="border-r border-blue-gray-50">
-          <p class="m-2">
-            {{ handoff.entry_datetime | date: "h:mm a" }}<br/>
-            {{ handoff.entry_datetime | date: "M/d/y" }}
+      <tr *ngFor="let handoff of pastHandoffs" class="border-b border-r border-black">
+        <td class="border-r border-l border-black" style="width: 10%;"><p class="text-center">{{ handoff.id }}</p></td>
+        <td class="border-r border-l border-black" style="width: 20%;"><p class="text-center">{{ handoff.city }}</p></td>
+        <td class="border-r border-black" style="width: 50%;"><p class="m-2">{{ handoff.entry }}</p></td>
+        <td class="border-r border-black" style="width: 20%;">
+          <p class="m-2 text-center">
+            {{ handoff.date | date: "h:mm a" }}<br/>
+            {{ handoff.date | date: "M/d/y" }}
           </p>
         </td>
       </tr>
     </tbody>
   </table>
 
-<!--  <figure *ngFor="let handoff of pastHandoffs" class="md:flex bg-slate-100 rounded-xl p-8 md:p-0 m-2 dark:bg-slate-800">-->
-<!--    <div class="pt-6 md:p-8 text-center md:text-left space-y-4">-->
-<!--      <blockquote>-->
-<!--        <figcaption class="font-medium">Dallas:</figcaption>-->
-<!--        <p class="font-medium">{{ handoff.dallas }}</p>-->
-<!--      </blockquote>-->
-<!--      <blockquote>-->
-<!--        <figcaption class="font-medium">Houston:</figcaption>-->
-<!--        <p class="font-medium">{{ handoff.houston }}</p>-->
-<!--      </blockquote>-->
-<!--      <blockquote>-->
-<!--        <figcaption class="font-medium">San Antonio:</figcaption>-->
-<!--        <p class="font-medium">{{ handoff.san_antonio }}</p>-->
-<!--      </blockquote>-->
-<!--      <figcaption class="text-xs font-medium">-->
-<!--        <div>-->
-<!--          Entry Date: {{ handoff.entry_datetime | date: "h:mm a MMM dd, yyyy" }}-->
-<!--        </div>-->
-<!--      </figcaption>-->
-<!--    </div>-->
-<!--  </figure>-->
 
   <ng-template #noDataTemplate>
     <div class="flex items-center justify-center h-screen text-2xl">

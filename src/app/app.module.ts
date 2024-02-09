@@ -7,6 +7,9 @@ import {FormsModule} from "@angular/forms";
 import { PastHandoffsComponent } from './past-handoffs/past-handoffs.component';
 import {HttpClientModule} from "@angular/common/http";
 import {DataService} from "./data.service";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatIconModule} from "@angular/material/icon";
+import {MatTable} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -18,9 +21,11 @@ import {DataService} from "./data.service";
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatTable
   ],
-  providers: [DataService],
+  providers: [DataService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
