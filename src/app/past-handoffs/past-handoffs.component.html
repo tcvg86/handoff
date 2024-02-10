@@ -4,6 +4,7 @@
       <tr class="border-b border-t border-l border-r border-black bg-blue-gray-50">
         <th class="m-2" style="width: 10%;">Entry #</th>
         <th class="m-2" style="width: 20%;">Market</th>
+        <th class="m-2" style="width: 20%;">Name</th>
         <th class="m-2" style="width: 50%;">Updates</th>
         <th class="m-2" style="width: 20%;">Entry Date & Time</th>
       </tr>
@@ -12,10 +13,11 @@
       <tr *ngFor="let handoff of pastHandoffs" class="border-b border-r border-black">
         <td class="border-r border-l border-black" style="width: 10%;"><p class="text-center">{{ handoff.id }}</p></td>
         <td class="border-r border-l border-black" style="width: 20%;"><p class="text-center">{{ handoff.city }}</p></td>
+        <td class="border-r border-l border-black" style="width: 20%;"><p class="text-center">{{ handoff.name }}</p></td>
         <td class="border-r border-black" style="width: 50%;"><p class="m-2">{{ handoff.entry }}</p></td>
         <td class="border-r border-black" style="width: 20%;">
           <p class="m-2 text-center">
-            {{ handoff.date | date: "h:mm a" }}<br/>
+            {{ handoff.date | date: "h:mm a" : '-6000' }}<br/>
             {{ handoff.date | date: "M/d/y" }}
           </p>
         </td>

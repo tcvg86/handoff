@@ -15,14 +15,28 @@
         </div>
 
         <div class="sm:col-span-3" *ngIf="cities && cities.length > 0; else noCitiesFound">
-          <label for="market" class="block text-sm font-medium leading-6 text-gray-900">Market</label>
+          <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Market</label>
           <div class="mt-2">
-            <select [(ngModel)]="market" id="market" name="market" autocomplete="market-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+            <select [(ngModel)]="city" id="city" name="city" autocomplete="market-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
               <option value="0">Select Market...</option>
               <option *ngFor="let market of cities" [value]="market.id">{{ market.city }}</option>
             </select>
           </div>
         </div>
+
+        <div class="sm:col-span-3">
+          <label for="priority" class="block text-sm font-medium leading-6 text-gray-900">Priority</label>
+          <div class="mt-2">
+            <select id="priority" [(ngModel)]="priority" name="priority" autocomplete="market-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+              <option value="0">Select Priority...</option>
+              <option value="1">Low</option>
+              <option value="2">Medium</option>
+              <option value="3">High</option>
+            </select>
+          </div>
+        </div>
+
+
 
         <ng-template #noCitiesFound>
           <div class="sm:col-span-3">

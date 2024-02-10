@@ -8,8 +8,9 @@ import {DataService} from "../data.service";
 })
 export class MarketSectionComponent implements OnInit{
   name: string = '';
-  market: number = 0;
+  city: number = 0;
   entry: string = '';
+  priority: number = 0;
   cities: any[];
 
   constructor(private dataService: DataService) {
@@ -24,13 +25,28 @@ export class MarketSectionComponent implements OnInit{
   }
 
   saveEntry(): void {
-    console.log(this.name, this.market, this.entry);
+    const entryData = {
+      name: this.name,
+      market_id: this.city,
+      priority: this.priority,
+      entry: this.entry
+    }
+    console.log(entryData);
+    this.dataService.saveEntry(entryData).subscribe(
+      resp => {
+        console.log(resp);
+      },
+      error => {
+        console.log(error);
+      }
+    )
     this.clearFields();
   }
 
   clearFields(): void {
     this.name = '';
-    this.market = 0;
+    this.city = 0;
+    this.priority = 0;
     this.entry = '';
   }
 

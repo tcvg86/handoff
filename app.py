@@ -1,4 +1,6 @@
-from flask import Flask, jsonify
+from urllib import request
+
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import mysql.connector
 
@@ -46,7 +48,7 @@ def get_entries():
         # Create a cursor object inside the 'with' block
         with connection.cursor() as cursor:
             cursor.execute('''
-            select ent.id, mkt.city, ent.entry, ent.date from entries ent join markets mkt on mkt.id = ent.market_id
+            select ent.id, mkt.city, ent.name, ent.entry, ent.date from entries ent join markets mkt on mkt.id = ent.market_id
             ''')
             entries = cursor.fetchall()
 
@@ -55,8 +57,9 @@ def get_entries():
                 entry_dict = {
                     'id': entry[0],
                     'city': entry[1],
-                    'entry': entry[2],
-                    'date': entry[3].isoformat() if entry[3] else None
+                    'name': entry[2],
+                    'entry': entry[3],
+                    'date': entry[4].isoformat() if entry[4] else None
                 }
                 entries_list.append(entry_dict)
 
@@ -66,9 +69,38 @@ def get_entries():
 
 
 @app.route('/save_entry', methods=['POST'])
-@cross_origin(origins='*', headers=['Content-Type', 'Authorization'])
 def save_entry():
-    print('Route successful')
+    try:
+        data = request.get_json()
+
+        name = data.get('name')
+        city = data.get('market_id')
+        entry = data.get('entry')
+
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            database="handoffmock"
+        )
+
+        cursor = connection.cursor()
+
+        insert_query = f'''
+            INSERT INTO entries (name, market_id, entry) VALUES ('{name}', '{city}', '{entry}')
+        '''
+        print(insert_query)
+        cursor.execute(insert_query)
+
+        # Commit the changes to the database
+        connection.commit()
+
+        cursor.close()
+
+        connection.close()
+
+        return jsonify({'message': 'Entry saved successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':
