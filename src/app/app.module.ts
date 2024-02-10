@@ -9,7 +9,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {DataService} from "./data.service";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatIconModule} from "@angular/material/icon";
-import {MatTable} from "@angular/material/table";
+import {MatTable, MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {MatTable} from "@angular/material/table";
     AppRoutingModule,
     HttpClientModule,
     MatIconModule,
-    MatTable
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [DataService, provideAnimationsAsync()],
   bootstrap: [AppComponent]

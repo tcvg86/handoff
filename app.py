@@ -75,6 +75,7 @@ def save_entry():
 
         name = data.get('name')
         city = data.get('market_id')
+        # priority = data.get('priority') # add this after you rebuild docker compose
         entry = data.get('entry')
 
         connection = mysql.connector.connect(
@@ -85,6 +86,7 @@ def save_entry():
 
         cursor = connection.cursor()
 
+        # add priority to this later
         insert_query = f'''
             INSERT INTO entries (name, market_id, entry) VALUES ('{name}', '{city}', '{entry}')
         '''
