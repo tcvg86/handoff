@@ -11,7 +11,7 @@ import { DatePipe } from "@angular/common";
 })
 export class PastHandoffsComponent implements OnInit {
   pastHandoffs: any[];
-  displayedColumns = ['id', 'city', 'priority', 'name', 'entry', 'date'];
+  displayedColumns = ['id', 'city', 'priority', 'name', 'entry', 'date', 'edit'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -25,6 +25,14 @@ export class PastHandoffsComponent implements OnInit {
         this.pastHandoffs = handoffs;
         this.dataSource = new MatTableDataSource<any>(this.pastHandoffs);
         this.dataSource.paginator = this.paginator;
+      }
+    )
+  }
+
+  getEntry(id) {
+    this.dataService.getEntry(id).subscribe(
+      entry => {
+        console.log(entry)
       }
     )
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../data.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-market-section',
@@ -11,9 +12,10 @@ export class MarketSectionComponent implements OnInit{
   city: number = 0;
   entry: string = '';
   priority: number = 0;
+  loading: boolean = false;
   cities: any[];
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private _snackbar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -32,15 +34,22 @@ export class MarketSectionComponent implements OnInit{
       entry: this.entry
     }
     console.log(entryData);
-    this.dataService.saveEntry(entryData).subscribe(
-      resp => {
-        console.log(resp);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-    this.clearFields();
+    this.loading = true;
+    setTimeout(() => {
+      this.dataService.saveEntry(entryData).subscribe(
+        resp => {
+          this.loading = false;
+          this._snackbar.open('Entry Saved!', 'Close', { duration: 5000 })
+          console.log(resp);
+        },
+        error => {
+          this.loading = false;
+          this._snackbar.open('An Error Occurred', 'Close', { duration: 5000 })
+          console.log(error);
+        }
+      )
+      this.clearFields();
+    }, 4000);
   }
 
   clearFields(): void {

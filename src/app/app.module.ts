@@ -11,12 +11,17 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatIconModule} from "@angular/material/icon";
 import {MatTable, MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { EntryModalComponent } from './entry-modal/entry-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MarketSectionComponent,
-    PastHandoffsComponent
+    PastHandoffsComponent,
+    EntryModalComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     HttpClientModule,
     MatIconModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [DataService, provideAnimationsAsync()],
   bootstrap: [AppComponent]

@@ -2,19 +2,28 @@ from urllib import request
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
+import json
 import mysql.connector
 
 app = Flask(__name__)
 CORS(app)
+
+# Get your secrets
+with open('secrets.json') as secret_file:
+    secrets = json.load(secret_file)
+
+db_host = secrets['database']['host']
+db_user = secrets['database']['username']
+db_database = secrets['database']['database']
 
 
 @app.route('/get_cities', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def get_cities():
     with mysql.connector.connect(
-        host="localhost",
-        user="root",
-        database="handoffmock"
+        host=db_host,
+        user=db_user,
+        database=db_database
     ) as connection:
         # Create a cursor object inside the 'with' block
         with connection.cursor() as cursor:
@@ -41,9 +50,9 @@ def get_cities():
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def get_entries():
     with mysql.connector.connect(
-        host="localhost",
-        user="root",
-        database="handoffmock"
+        host=db_host,
+        user=db_user,
+        database=db_database
     ) as connection:
         # Create a cursor object inside the 'with' block
         with connection.cursor() as cursor:
@@ -69,6 +78,26 @@ def get_entries():
     return jsonify(entries_list)
 
 
+@app.route('/get_entry/<int:id>', methods=['GET'])
+def get_entry(id):
+    with mysql.connector.connect(
+      host=db_host,
+      user=db_user,
+      database=db_database
+    ) as connection:
+        with connection.cursor(dictionary=True) as cursor:
+            cursor.execute('''
+              select * from entries
+              where id = %s
+            ''', (id,))
+            entry = cursor.fetchone()
+
+    if entry:
+        return jsonify(entry)
+    else:
+        return jsonify({'error': 'Entry not found'}), 404
+
+
 @app.route('/save_entry', methods=['POST'])
 def save_entry():
     try:
@@ -80,9 +109,9 @@ def save_entry():
         entry = data.get('entry')
 
         connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            database="handoffmock"
+            host=db_host,
+            user=db_user,
+            database=db_database
         )
 
         cursor = connection.cursor()

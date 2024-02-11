@@ -20,4 +20,8 @@ export class DataService {
   saveEntry(entryData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/save_entry`, entryData);
   }
+
+  getEntry(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/get_entry/${id}`);
+  }
 }

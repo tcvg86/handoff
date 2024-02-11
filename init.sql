@@ -52,3 +52,7 @@ VALUES
   (2, 2, 'Sales news update for San Antonio.', 'Jane Smith', '2024-02-09 13:45:30'),
   (10, 1, 'Laredo market report.', 'Jessica Brown', '2024-02-09 21:13:59'),
   (8, 1, 'Corpus Christi market sales overview.', 'Laura Martinez', '2024-02-09 19:51:42');
+
+-- Add audit trail table?
+
+-- Add list of users?
