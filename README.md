@@ -28,3 +28,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Flask
 In case you lose your mind... you need to clear you cookies and refresh so that this works... otherwise, you're going to have a bunch of CORS issues you don't want to deal with.
+
+## Secrets
+You need to create a secrets file on your own to include your DB creds. Look at me go...
