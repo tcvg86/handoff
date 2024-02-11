@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Get your secrets
-with open('secrets.json') as secret_file:
+with open('secrets/secrets.json') as secret_file:
     secrets = json.load(secret_file)
 
 db_host = secrets['database']['host']
