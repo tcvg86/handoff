@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from "../data.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-past-handoffs',
@@ -10,7 +11,7 @@ import { MatPaginator } from "@angular/material/paginator";
 })
 export class PastHandoffsComponent implements OnInit {
   pastHandoffs: any[];
-  displayedColumns = ['id', 'city', 'name', 'entry', 'date'];
+  displayedColumns = ['id', 'city', 'priority', 'name', 'entry', 'date'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -26,6 +27,17 @@ export class PastHandoffsComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       }
     )
+  }
+
+  transformPriority(priority: number): string {
+    switch (priority) {
+      case 1:
+        return 'Low';
+      case 2:
+        return 'Medium';
+      case 3:
+        return 'High';
+    }
   }
 
 }

@@ -48,7 +48,7 @@ def get_entries():
         # Create a cursor object inside the 'with' block
         with connection.cursor() as cursor:
             cursor.execute('''
-            select ent.id, mkt.city, ent.name, ent.entry, ent.date from entries ent join markets mkt on mkt.id = ent.market_id
+            select ent.id, mkt.city, ent.name, ent.entry, ent.date, ent.priority from entries ent join markets mkt on mkt.id = ent.market_id
             ''')
             entries = cursor.fetchall()
 
@@ -59,7 +59,8 @@ def get_entries():
                     'city': entry[1],
                     'name': entry[2],
                     'entry': entry[3],
-                    'date': entry[4].isoformat() if entry[4] else None
+                    'date': entry[4].isoformat() if entry[4] else None,
+                    'priority': entry[5]
                 }
                 entries_list.append(entry_dict)
 
@@ -75,7 +76,7 @@ def save_entry():
 
         name = data.get('name')
         city = data.get('market_id')
-        # priority = data.get('priority') # add this after you rebuild docker compose
+        priority = data.get('priority')
         entry = data.get('entry')
 
         connection = mysql.connector.connect(
@@ -88,9 +89,8 @@ def save_entry():
 
         # add priority to this later
         insert_query = f'''
-            INSERT INTO entries (name, market_id, entry) VALUES ('{name}', '{city}', '{entry}')
+            INSERT INTO entries (name, market_id, entry, priority) VALUES ('{name}', '{city}', '{entry}', '{priority}')
         '''
-        print(insert_query)
         cursor.execute(insert_query)
 
         # Commit the changes to the database
