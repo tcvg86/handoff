@@ -8,20 +8,38 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./market-section.component.css']
 })
 export class MarketSectionComponent implements OnInit{
-  name: string = '';
+  name: string = 'name';
   city: number = 0;
   entry: string = '';
   priority: number = 0;
   loading: boolean = false;
+  cityLoading: boolean = false;
   cities: any[];
+  users: any[];
 
   constructor(private dataService: DataService, private _snackbar: MatSnackBar) {
   }
 
   ngOnInit() {
+    this.getCities();
+    this.getUsers();
+  }
+
+  getCities() {
+    this.cityLoading = true;
+
     this.dataService.getCities().subscribe(
       cities => {
         this.cities = cities;
+        this.cityLoading = false;
+      }
+    )
+  }
+
+  getUsers() {
+    this.dataService.getUsers().subscribe(
+      users => {
+        this.users = users;
       }
     )
   }
@@ -33,7 +51,7 @@ export class MarketSectionComponent implements OnInit{
       priority: this.priority,
       entry: this.entry
     }
-    console.log(entryData);
+    // console.log(entryData);
     this.loading = true;
     setTimeout(() => {
       this.dataService.saveEntry(entryData).subscribe(

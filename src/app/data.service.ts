@@ -9,6 +9,9 @@ export class DataService {
   private apiUrl = 'http://127.0.0.1:5000';
   constructor(private http: HttpClient) { }
 
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/get_users`)
+  }
   getEntries(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/get_entries`);
   }

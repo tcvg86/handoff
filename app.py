@@ -17,6 +17,32 @@ db_user = secrets['database']['username']
 db_database = secrets['database']['database']
 
 
+# get current user?
+
+@app.route('/get_users', methods=['GET'])
+def get_user():
+  with mysql.connector.connect(
+    host=db_host,
+    user=db_user,
+    database=db_database
+  ) as connection:
+    with connection.cursor() as cursor:
+      cursor.execute('''
+        SELECT concat(first_name, ' ', last_name) as name, username FROM users
+      ''')
+      users = cursor.fetchall()
+
+      user_list = []
+
+      for user in users:
+        user_dict = {
+          'name': user[0],
+          'username': user[1]
+        }
+        user_list.append(user_dict)
+
+  return jsonify(user_list)
+
 @app.route('/get_cities', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def get_cities():
@@ -97,6 +123,8 @@ def get_entry(id):
     else:
         return jsonify({'error': 'Entry not found'}), 404
 
+
+# update entry with id function goes here
 
 @app.route('/save_entry', methods=['POST'])
 def save_entry():

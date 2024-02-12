@@ -12,7 +12,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class PastHandoffsComponent implements OnInit {
   pastHandoffs: any[];
-  displayedColumns = ['id', 'city', 'priority', 'name', 'entry', 'date', 'edit'];
+  displayedColumns = ['id', 'city', 'name', 'entry', 'priority', 'date', 'edit'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

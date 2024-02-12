@@ -53,6 +53,25 @@ VALUES
   (10, 1, 'Laredo market report.', 'Jessica Brown', '2024-02-09 21:13:59'),
   (8, 1, 'Corpus Christi market sales overview.', 'Laura Martinez', '2024-02-09 19:51:42');
 
--- Add audit trail table?
+-- create table for users
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(100),
+  last_name VARCHAR(100),
+  username VARCHAR (10)
+);
 
--- Add list of users?
+-- insert query for users
+INSERT INTO users (first_name, last_name, username)
+VALUES
+  ('Bob', 'Johnson', 'johnbob'),
+  ('David', 'Taylor', 'tayldav'),
+  ('John', 'Doe', 'doejohn'),
+  ('Sarah', 'Wilson', 'wilssar'),
+  ('Emily', 'Davis', 'daviemi'),
+  ('Chris', 'Anderson', 'andechr'),
+  ('Michael', 'Miller', 'millmic'),
+  ('Jane', 'Smith', 'smitjan'),
+  ('Jessica', 'Brown', 'browjes'),
+  ('Laura', 'Martinez', 'martlau'),
+  ('Anthony', 'Griggs', 'grigant');
