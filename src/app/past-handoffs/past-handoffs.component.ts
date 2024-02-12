@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from "../data.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
-import { DatePipe } from "@angular/common";
+import { EntryModalComponent } from "../entry-modal/entry-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-past-handoffs',
@@ -16,7 +17,7 @@ export class PastHandoffsComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   // displayedColumns: Iterable<string>;
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -32,7 +33,9 @@ export class PastHandoffsComponent implements OnInit {
   getEntry(id) {
     this.dataService.getEntry(id).subscribe(
       entry => {
-        console.log(entry)
+        this.dialog.open(EntryModalComponent, {
+          data: entry
+        })
       }
     )
   }
