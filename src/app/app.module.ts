@@ -18,13 +18,15 @@ import { EntryModalComponent } from './entry-modal/entry-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MarketSectionComponent,
     PastHandoffsComponent,
-    EntryModalComponent
+    EntryModalComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,

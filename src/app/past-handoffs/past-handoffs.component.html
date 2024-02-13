@@ -19,8 +19,11 @@
             {{ column === 'priority' ? transformPriority(element[column]) : element[column] }}
           </ng-template>
           <ng-container *ngIf="column == 'edit'">
-            <button (click)="getEntry(element['id'])" mat-button color="primary">
+            <button (click)="getEntry(element['id'])" mat-icon-button color="primary">
               <mat-icon>edit</mat-icon>
+            </button>
+              <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
             </button>
           </ng-container>
         </td>
