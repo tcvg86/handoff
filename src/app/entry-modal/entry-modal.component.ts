@@ -8,7 +8,7 @@ import {DataService} from "../data.service";
     <div style="width: 500px; height: 600px; margin: 50px;">
       <h2 class="mt-2">Edit Entry</h2>
       <form>
-        <div class="mt-16 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 border-b">
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4">
 
           <div class="sm:col-span-4">
             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
@@ -23,7 +23,7 @@ import {DataService} from "../data.service";
           <div class="sm:col-span-3" *ngIf="cities && cities.length > 0">
           <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Market</label>
           <div class="mt-2">
-            <select [(ngModel)]="data.market_id" id="city" name="city" autocomplete="market-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+            <select style="width: 400px;"  [(ngModel)]="data.market_id" id="city" name="city" autocomplete="market-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
               <option value="0">Select Market...</option>
               <option *ngFor="let market of cities" [value]="market.id">{{ market.city }}</option>
             </select>
@@ -45,9 +45,9 @@ import {DataService} from "../data.service";
           <div class="col-span-full">
           <label for="handoff" class="block text-sm font-medium leading-6 text-gray-900">Update Details</label>
           <div class="mt-2">
-            <textarea [(ngModel)]="data.entry" id="handoff" name="handoff" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+            <textarea [(ngModel)]="data.entry" id="handoff" name="handoff" rows="5" style="width: 400px;" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
           </div>
-          <p class="mt-3 text-sm leading-6 text-gray-600">Enter details about the market you worked in...</p>
+          <p class="mt-3 text-sm leading-6 text-gray-600">Make your updates.</p>
         </div>
         </div>
         <div class="mt-6 flex items-center justify-end gap-x-6">

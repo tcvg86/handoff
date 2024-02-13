@@ -11,8 +11,9 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrl: './past-handoffs.component.css',
 })
 export class PastHandoffsComponent implements OnInit {
+  priv: string = '';
   pastHandoffs: any[];
-  displayedColumns = ['id', 'city', 'name', 'entry', 'priority', 'date', 'edit'];
+  displayedColumns = [];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -21,13 +22,35 @@ export class PastHandoffsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.getEntries().subscribe(
+    this.getPriv();
+    this.getEntries();
+  }
+
+  getEntries() {
+     this.dataService.getEntries().subscribe(
       handoffs => {
         this.pastHandoffs = handoffs;
         this.dataSource = new MatTableDataSource<any>(this.pastHandoffs);
         this.dataSource.paginator = this.paginator;
       }
     )
+  }
+
+  getPriv() {
+    this.dataService.getCurrentUser().subscribe(
+        user => {
+          this.priv = user[4];
+
+          if (this.priv === 'admin') {
+            this.displayedColumns = ['id', 'name', 'city', 'entry', 'priority', 'date', 'edit'];
+          } else {
+            this.displayedColumns = ['id', 'name', 'city', 'entry', 'priority', 'date'];
+          }
+        }
+    )
+
+
+
   }
 
   getEntry(id) {

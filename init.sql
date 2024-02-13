@@ -58,20 +58,21 @@ CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(100),
   last_name VARCHAR(100),
-  username VARCHAR (10)
+  username VARCHAR (10),
+  priv VARCHAR(10)
 );
 
 -- insert query for users
-INSERT INTO users (first_name, last_name, username)
+INSERT INTO users (first_name, last_name, username, priv)
 VALUES
-  ('Bob', 'Johnson', 'johnbob'),
-  ('David', 'Taylor', 'tayldav'),
-  ('John', 'Doe', 'doejohn'),
-  ('Sarah', 'Wilson', 'wilssar'),
-  ('Emily', 'Davis', 'daviemi'),
-  ('Chris', 'Anderson', 'andechr'),
-  ('Michael', 'Miller', 'millmic'),
-  ('Jane', 'Smith', 'smitjan'),
-  ('Jessica', 'Brown', 'browjes'),
-  ('Laura', 'Martinez', 'martlau'),
-  ('Anthony', 'Griggs', 'grigant');
+  ('Bob', 'Johnson', 'johnbob', 'user'),
+  ('David', 'Taylor', 'tayldav', 'user'),
+  ('John', 'Doe', 'doejohn', 'user'),
+  ('Sarah', 'Wilson', 'wilssar', 'user'),
+  ('Emily', 'Davis', 'daviemi', 'user'),
+  ('Chris', 'Anderson', 'andechr', 'user'),
+  ('Michael', 'Miller', 'millmic', 'user'),
+  ('Jane', 'Smith', 'smitjan', 'user'),
+  ('Jessica', 'Brown', 'browjes', 'user'),
+  ('Laura', 'Martinez', 'martlau', 'user'),
+  ('Anthony', 'Griggs', 'grigant', 'admin');

@@ -15,33 +15,54 @@ with open('secrets/secrets.json') as secret_file:
 db_host = secrets['database']['host']
 db_user = secrets['database']['username']
 db_database = secrets['database']['database']
+current_user = secrets['user']
 
 
-# get current user?
+@app.route('/user', methods=['GET'])
+def get_current_user():
+    with mysql.connector.connect(
+        host=db_host,
+        user=db_user, database=db_database
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                '''
+                  select * from users
+                  where username = %s
+                ''', (current_user,)
+            )
+            user = cursor.fetchone()
+
+            if user is not None:
+                return jsonify(user)
+            else:
+                return jsonify({'error': 'User not found'})
+
 
 @app.route('/get_users', methods=['GET'])
-def get_user():
-  with mysql.connector.connect(
-    host=db_host,
-    user=db_user,
-    database=db_database
-  ) as connection:
-    with connection.cursor() as cursor:
-      cursor.execute('''
+def get_users():
+    with mysql.connector.connect(
+        host=db_host,
+        user=db_user,
+        database=db_database
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute('''
         SELECT concat(first_name, ' ', last_name) as name, username FROM users
       ''')
-      users = cursor.fetchall()
+            users = cursor.fetchall()
 
-      user_list = []
+            user_list = []
 
-      for user in users:
-        user_dict = {
-          'name': user[0],
-          'username': user[1]
-        }
-        user_list.append(user_dict)
+            for user in users:
+                user_dict = {
+                    'name': user[0],
+                    'username': user[1]
+                }
+                user_list.append(user_dict)
 
-  return jsonify(user_list)
+    return jsonify(user_list)
+
 
 @app.route('/get_cities', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
@@ -107,9 +128,9 @@ def get_entries():
 @app.route('/get_entry/<int:id>', methods=['GET'])
 def get_entry(id):
     with mysql.connector.connect(
-      host=db_host,
-      user=db_user,
-      database=db_database
+        host=db_host,
+        user=db_user,
+        database=db_database
     ) as connection:
         with connection.cursor(dictionary=True) as cursor:
             cursor.execute('''

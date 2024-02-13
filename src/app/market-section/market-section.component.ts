@@ -9,6 +9,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class MarketSectionComponent implements OnInit{
   name: string = 'name';
+  userName: string = '';
+  fullName: string = '';
+  priv: string = '';
   city: number = 0;
   entry: string = '';
   priority: number = 0;
@@ -21,8 +24,22 @@ export class MarketSectionComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.getCurrentUser();
     this.getCities();
     this.getUsers();
+  }
+
+  getCurrentUser() {
+    this.dataService.getCurrentUser().subscribe(
+        user => {
+          this.fullName = user[1] + ' ' + user[2];
+          this.userName = user[3];
+          this.priv = user[4];
+
+          // this transforms the name property to the full name retrieved
+          this.name = this.fullName;
+        }
+    )
   }
 
   getCities() {
@@ -71,7 +88,7 @@ export class MarketSectionComponent implements OnInit{
   }
 
   clearFields(): void {
-    this.name = '';
+    this.name = this.fullName ? this.fullName : '';
     this.city = 0;
     this.priority = 0;
     this.entry = '';
