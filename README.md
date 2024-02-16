@@ -27,7 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Flask
-In case you lose your mind... you need to clear you cookies and refresh so that this works... otherwise, you're going to have a bunch of CORS issues you don't want to deal with.
+If you start Flask and you keep getting a CORS error, you need to clear you cookies and perform a hard refresh in your browser so that this works... otherwise, you're going to run into CORS issues that will make you scream.
 
 ## Secrets
-You need to create a secrets file on your own to include your DB creds. Look at me go...
+You need to create a secrets file on your own to include your DB creds. You can also do whatever you want to do to make this better. This isn't a real project, just something to do to keep the mind sharp.
