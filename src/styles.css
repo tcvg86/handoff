@@ -56,5 +56,13 @@
   max-width: 600px;
 }
 
+.notif-success {
+  --mdc-snackbar-container-color: green !important;
+}
+
+.notif-error {
+  --mdc-snackbar-container-color: darkred !important;
+}
+
 /*html, body { height: 100%; }*/
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

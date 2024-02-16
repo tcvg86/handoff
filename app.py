@@ -64,6 +64,41 @@ def get_users():
     return jsonify(user_list)
 
 
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    try:
+        data = request.get_json()
+
+        first_name = data.get('firstName')
+        last_name = data.get('lastName')
+        username = data.get('userName')
+
+        connection = mysql.connector.connect(
+            host=db_host,
+            user=db_user,
+            database=db_database
+        )
+
+        cursor = connection.cursor()
+
+        insert_query = f'''
+            INSERT INTO users (first_name, last_name, username)
+            VALUES ('{first_name}', '{last_name}', '{username}')
+        '''
+        print(insert_query)
+        cursor.execute(insert_query)
+        # Commit the changes to the database
+        connection.commit()
+
+        cursor.close()
+
+        connection.close()
+
+        return jsonify({'message': 'Entry saved successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/get_cities', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type', 'Authorization'])
 def get_cities():
