@@ -31,6 +31,11 @@ export class DataService {
     return this.http.post<any>(`${this.apiUrl}/add_user`, entryData);
   }
 
+  addCity(cityName: string): Observable<any> {
+    const body = { city: cityName };
+    return this.http.post<any>(`${this.apiUrl}/add_city`, body)
+  }
+
   getEntry(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/get_entry/${id}`);
   }

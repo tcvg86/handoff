@@ -1,3 +1,4 @@
+from json import JSONEncoder
 from urllib import request
 
 from flask import Flask, request, jsonify
@@ -16,6 +17,17 @@ db_host = secrets['database']['host']
 db_user = secrets['database']['username']
 db_database = secrets['database']['database']
 current_user = secrets['user']
+
+
+class CustomJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        try:
+            return super().default(obj)
+        except TypeError:
+            return str(obj)
+
+
+app.json_encoder = CustomJSONEncoder
 
 
 @app.route('/user', methods=['GET'])
@@ -49,6 +61,7 @@ def get_users():
         with connection.cursor() as cursor:
             cursor.execute('''
         SELECT concat(first_name, ' ', last_name) as name, username FROM users
+        ORDER BY first_name ASC
       ''')
             users = cursor.fetchall()
 
@@ -85,7 +98,7 @@ def add_user():
             INSERT INTO users (first_name, last_name, username)
             VALUES ('{first_name}', '{last_name}', '{username}')
         '''
-        print(insert_query)
+
         cursor.execute(insert_query)
         # Commit the changes to the database
         connection.commit()
@@ -95,6 +108,38 @@ def add_user():
         connection.close()
 
         return jsonify({'message': 'Entry saved successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/add_city', methods=['POST'])
+def add_city():
+    try:
+        data = request.get_json()
+        city_name = data.get('city')
+
+        connection = mysql.connector.connect(
+            host=db_host,
+            user=db_user,
+            database=db_database
+        )
+
+        cursor = connection.cursor()
+
+        insert_query = f'''
+            INSERT INTO markets (city)
+            VALUES ('{city_name}')
+        '''
+
+        cursor.execute(insert_query)
+        # Commit the changes to the database
+        connection.commit()
+
+        cursor.close()
+
+        connection.close()
+
+        return jsonify({'message': 'City saved successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -111,6 +156,7 @@ def get_cities():
         with connection.cursor() as cursor:
             cursor.execute('''
             select * from markets
+            order by city asc
             ''')
             markets = cursor.fetchall()
 

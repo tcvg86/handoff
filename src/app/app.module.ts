@@ -20,6 +20,7 @@ import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { AddCityComponent } from './add-city/add-city.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddUserComponent } from './add-user/add-user.component';
     PastHandoffsComponent,
     EntryModalComponent,
     DeleteModalComponent,
-    AddUserComponent
+    AddUserComponent,
+    AddCityComponent
   ],
   imports: [
     BrowserModule,
