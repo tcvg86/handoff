@@ -85,6 +85,7 @@ def add_user():
         first_name = data.get('firstName')
         last_name = data.get('lastName')
         username = data.get('userName')
+        priv = data.get('userType')
 
         connection = mysql.connector.connect(
             host=db_host,
@@ -95,8 +96,8 @@ def add_user():
         cursor = connection.cursor()
 
         insert_query = f'''
-            INSERT INTO users (first_name, last_name, username)
-            VALUES ('{first_name}', '{last_name}', '{username}')
+            INSERT INTO users (first_name, last_name, username, priv)
+            VALUES ('{first_name}', '{last_name}', '{username}', '{priv}')
         '''
 
         cursor.execute(insert_query)

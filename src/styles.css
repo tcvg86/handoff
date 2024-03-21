@@ -39,6 +39,12 @@
   background-color: #0056b3;
 }
 
+.active-link {
+  font-weight: bold;
+  background-color: #e2e8f0;
+  color: #000;
+}
+
 .app-banner h1 {
   margin: 0;
   font-size: 24px;
