@@ -61,7 +61,7 @@ def get_users():
         with connection.cursor() as cursor:
             cursor.execute('''
         SELECT concat(first_name, ' ', last_name) as name, username FROM users
-        ORDER BY first_name ASC
+        ORDER BY last_name ASC
       ''')
             users = cursor.fetchall()
 
