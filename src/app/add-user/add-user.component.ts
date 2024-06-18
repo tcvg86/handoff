@@ -37,14 +37,14 @@ export class AddUserComponent {
       userType: this.userType
     }
 
-    // this.dservice.addUser(entryData).subscribe(
-    //     resp => {
-    //       this._snackbar.open('User Created', '', {duration: 5000, panelClass: 'notif-success'});
-    //     },
-    //     error => {
-    //       this._snackbar.open('An error occurred', '', {duration: 5000, panelClass: 'notif-error'})
-    //     }
-    // )
+    this.dservice.addUser(entryData).subscribe(
+        resp => {
+          this._snackbar.open('User Created', '', {duration: 5000, panelClass: 'notif-success'});
+        },
+        error => {
+          this._snackbar.open('An error occurred', '', {duration: 5000, panelClass: 'notif-error'})
+        }
+    )
 
   }
 
